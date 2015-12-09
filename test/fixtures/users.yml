@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  organization_id: MyString
+  api_key: MyString
+  token: MyString
+
+two:
+  organization_id: MyString
+  api_key: MyString
+  token: MyString
