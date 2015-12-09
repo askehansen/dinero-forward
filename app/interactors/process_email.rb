@@ -15,6 +15,8 @@ class ProcessEmail
       file.write attachment['content']
 
       UploadPurchase.call file: file, organization_id: user.organization_id, api_key: user.api_key
+
+      UserMailer.upload_complete(email: email, name: name, filename: filename).deliver_now
     end
   end
 end
