@@ -9,6 +9,6 @@ class UserMailer < ApplicationMailer
     @name = name
     @filename = filename
 
-    mail to: "<#{name}> #{email}", subject: 'Bilag modtaget'
+    mail to: "#{name} <#{email}>", subject: 'Bilag modtaget'
   end
 end
