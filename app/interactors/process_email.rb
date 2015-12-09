@@ -10,11 +10,11 @@ class ProcessEmail
     /(?<id>.+)@/ =~ email
     user = User.find id
 
-    attachments.each do |attachment|
-      file = Tempfile.new
+    attachments.each do |name, attachment|
+      file = Tempfile.new name
       file.write attachment['content']
 
-      UploadPurchase file: file, organization_id: user.organization_id, api_key: user.api_key
+      UploadPurchase.call file: file, organization_id: user.organization_id, api_key: user.api_key
     end
   end
 end
