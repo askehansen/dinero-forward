@@ -6,6 +6,6 @@ class UploadPurchase
     client.authorize!
     file_id = client.create_file context.file
     sleep 1
-    context.purchase = client.create_purchase file_id: file_id
+    context.purchase = client.create_purchase file_id: file_id, notes: context.note
   end
 end

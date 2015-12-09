@@ -5,6 +5,7 @@ class ProcessEmail
     from_email = context.msg['from_email']
     from_name = context.msg['from_name']
     email = context.msg['email']
+    subject = context.msg['subject']
     attachments = context.msg['attachments'].to_a
 
     /(?<id>.+)@/ =~ email
@@ -25,7 +26,7 @@ class ProcessEmail
       tmpfile.close
       file = File.open tmpfile.path
 
-      UploadPurchase.call file: file, organization_id: user.organization_id, api_key: user.api_key
+      UploadPurchase.call file: file, organization_id: user.organization_id, api_key: user.api_key, note: subject
       UserMailer.upload_complete(email: from_email, name: from_name, filename: filename).deliver_now
     end
   end
