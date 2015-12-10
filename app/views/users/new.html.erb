@@ -5,11 +5,20 @@
   </div>
 
   <%= form_for @user, html: { class: 'form-inline' } do |f| %>
+
+    <% if @user.errors.any? %>
+      <div class=" errors">
+        <% @user.errors.full_messages.each do |error| %>
+          <div><%= error %></div>
+        <% end %>
+      </div>
+    <% end %>
+
     <div class="form-group">
-      <%= f.text_field :organization_id, class: 'form-control', placeholder: 'Dit Dinero firma ID', required: true %>
+      <%= f.text_field :organization_id, class: 'form-control', placeholder: 'Dit Dinero firma ID', r_equired: true %>
     </div>
     <div class="form-group">
-      <%= f.text_field :api_key, class: 'form-control', placeholder: 'Din Dinero API nøgle', required: true %>
+      <%= f.text_field :api_key, class: 'form-control', placeholder: 'Din Dinero API nøgle', r_equired: true %>
     </div>
     <%= f.submit 'Kom igang', class: 'btn btn-success' %>
   <% end %>
