@@ -1,9 +1,9 @@
 class Dinero
 
-  def initialize(client_id: nil, client_secret: nil, api_key: nil, organization_id:)
+  def initialize(client_id: nil, client_secret: nil, api_key:, organization_id:)
     @client_id = client_id || ENV['DINERO_CLIENT_ID']
     @client_secret = client_secret || ENV['DINERO_CLIENT_SECRET']
-    @api_key = api_key || ENV['DINERO_API_KEY']
+    @api_key = api_key
     @organization_id = organization_id
   end
 
