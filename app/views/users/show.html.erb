@@ -1,2 +1,20 @@
-<h1>Sådan!</h1>
-<p>Du kan nu sende dine bilag til <%= @user.id %>@dinero-forward.dk</p>
+<div class="container text-center">
+  <div class="hero">
+    <i class="fa fa-check check"></i>
+    <h1>Sådan!</h1>
+    <p class="lead">Du kan nu sende din bilag til Dinero</p>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-8 col-sm-offset-2">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <div class="instructions">
+      <p>Prøv at sende en mail med en vedhæftet fil til<br>
+        <%= mail_to "#{@user.id}@dinero-forward.dk", "#{@user.id}@dinero-forward.dk", class: 'mail' %></p>
+        </div>
+        </div>
+        </div>
+      </div>
+    </div>
+</div>

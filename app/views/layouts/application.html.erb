@@ -2,13 +2,22 @@
 <html>
 <head>
   <title>DineroForward</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag    'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css', 'https://fonts.googleapis.com/css?family=Rokkitt:700', 'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
 
 <%= yield %>
+
+
+
+<div id="footer" class="text-center">
+  <p>Lavet med <i class="fa fa-heart heart"></i> af <a href="https://www.deeco.dk" target="_blank">Aske Hansen</a></p>
+  <p><a href="https://www.deeco.dk" target="_blank">www.deeco.dk</a></p>
+  <p><a href="https://twitter.com/askehansen" target="_blank"><i class="fa fa-twitter"></i> @askehansen</a></p>
+</div>
+
 
 </body>
 </html>

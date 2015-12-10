@@ -10,6 +10,36 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
- *= require_tree .
  *= require_self
+ *= require_tree .
  */
+
+$font-family-serif: 'Rokkitt', 'Georgia, "Times New Roman", Times, serif';
+$headings-font-family: $font-family-serif;
+$headings-font-weight: 700;
+$font-size-base: 16px;
+$headings-color: #444;
+
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+
+h1 {
+ font-size: 80px;
+}
+
+.lead {
+  font-size: 36px;
+}
+
+
+
+#footer {
+  background: #444;
+  color: #fff;
+  margin-top: 100px;
+  padding: 100px 0;
+  a {
+    color: #fff;
+  }
+}

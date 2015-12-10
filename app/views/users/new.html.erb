@@ -1,6 +1,19 @@
-<h1>Dinero Forward</h1>
-<%= form_for @user do |f| %>
-  <%= f.text_field :organization_id %>
-  <%= f.text_field :api_key %>
-  <%= f.submit %>
-<% end %>
+<div class="container text-center">
+  <div class="hero">
+    <h1>Dinero Forward</h1>
+    <div class="lead"><em>Send</em> dine bilag til Dinero app</div>
+  </div>
+
+  <%= form_for @user, html: { class: 'form-inline' } do |f| %>
+    <div class="form-group">
+      <%= f.text_field :organization_id, class: 'form-control', placeholder: 'Dit Dinero firma ID', required: true %>
+    </div>
+    <div class="form-group">
+      <%= f.text_field :api_key, class: 'form-control', placeholder: 'Din Dinero API nøgle', required: true %>
+    </div>
+    <%= f.submit 'Kom igang', class: 'btn btn-success' %>
+  <% end %>
+
+
+  <p class="open-source">Det er <em>gratis</em> og <a href="https://github.com/askehansen/dinero-forward" target="_blank">open source</a></p>
+</div>
