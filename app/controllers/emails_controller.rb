@@ -5,7 +5,7 @@ class EmailsController < ApplicationController
     events = JSON.parse params[:mandrill_events]
     events.each do |event|
       if event['event'] == 'inbound'
-        ProcessEmail.call msg: event['msg']
+        InboundJob.perform_later event['msg']
       end
     end
 

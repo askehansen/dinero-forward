@@ -18,6 +18,9 @@ gem 'pry-rails'
 gem 'interactor-rails'
 gem 'puma'
 gem 'appsignal'
+gem 'sidekiq'
+gem 'redis'
+gem 'sinatra', :require => nil
 
 group :production do
   gem 'rails_12factor'
