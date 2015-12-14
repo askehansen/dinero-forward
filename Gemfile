@@ -21,6 +21,7 @@ gem 'appsignal'
 gem 'sidekiq'
 gem 'redis'
 gem 'sinatra', :require => nil
+gem 'errbase'
 
 group :production do
   gem 'rails_12factor'

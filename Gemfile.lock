@@ -78,6 +78,7 @@ GEM
     concurrent-ruby (1.0.0)
     connection_pool (2.2.0)
     debug_inspector (0.0.2)
+    errbase (0.0.3)
     erubis (2.7.0)
     execjs (2.6.0)
     figaro (1.1.1)
@@ -207,6 +208,7 @@ DEPENDENCIES
   appsignal
   bootstrap-sass
   byebug
+  errbase
   figaro
   interactor-rails
   jquery-rails
