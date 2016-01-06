@@ -3,6 +3,7 @@ class UserMailer < ApplicationMailer
   def upload_complete(email:, name:, filename:)
     @name = name
     @filename = filename
+    @date = DateTime.now.strftime '%d/%m/%Y'
 
     mail to: "#{name} <#{email}>", subject: 'Bilag modtaget'
   end
