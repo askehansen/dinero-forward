@@ -3,8 +3,8 @@ class Dinero
   def initialize(client_id: nil, client_secret: nil, api_key:, organization_id:)
     @client_id = client_id || ENV['DINERO_CLIENT_ID']
     @client_secret = client_secret || ENV['DINERO_CLIENT_SECRET']
-    @api_key = api_key
-    @organization_id = organization_id
+    @api_key = api_key.strip
+    @organization_id = organization_id.strip
   end
 
   def create_file(file)
