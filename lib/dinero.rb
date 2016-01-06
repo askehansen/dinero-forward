@@ -31,8 +31,15 @@ class Dinero
       password: @api_key
     }
 
-    response = RestClient.post 'https://authz.dinero.dk/dineroapi/oauth/token', params, { Authorization: "Basic #{auth}", accept: :json }
-    JSON.parse(response)['access_token']
+    begin
+      response = RestClient.post 'https://authz.dinero.dk/dineroapi/oauth/token', params, { Authorization: "Basic #{auth}", accept: :json }
+      JSON.parse(response)['access_token']
+    rescue RestClient::BadRequest
+      raise AuthorizationError
+    end
+  end
+
+  class AuthorizationError < StandardError
   end
 
 end
