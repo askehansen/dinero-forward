@@ -18,3 +18,6 @@
 
 # Ignore application configuration
 /config/application.yml
+
+# Ignore sample webhooks
+/mandrill-webhook

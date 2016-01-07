@@ -17,7 +17,7 @@ class InboundAttachment
   end
 
   def save!
-    Storage.new.write_file(key, @content)
+    Storage.new.write_file(key, content)
   end
 
 

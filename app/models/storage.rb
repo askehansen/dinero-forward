@@ -6,14 +6,13 @@ class Storage
   end
 
   def open_file(key)
-    filename = key.split('/').last
     ext = File.extname(key)
 
-    tmpfile = Tempfile.new [filename, ext], encoding: 'ascii-8bit'
+    tmpfile = Tempfile.new ['file', ext], encoding: 'ascii-8bit'
     tmpfile.write read_file(key)
     tmpfile.close
 
-    file = File.open tmpfile.path
+    File.open(tmpfile.path)
   end
 
   def read_file(key)
