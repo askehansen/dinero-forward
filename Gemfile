@@ -22,6 +22,7 @@ gem 'sidekiq'
 gem 'redis'
 gem 'sinatra', :require => nil
 gem 'errbase'
+gem 'aws-sdk'
 
 group :production do
   gem 'rails_12factor'
