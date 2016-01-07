@@ -38,7 +38,7 @@ class ProcessEmail
     end
 
     def attachments
-      @attachments ||= attachments_and_images.map do |filename, attachment|
+      @attachments ||= context.message['attachments'].to_a.map do |filename, attachment|
         decoder = InboundAttachment::Base64Decoder.new if attachment['base64']
         InboundAttachment.new(filename, attachment['content'], decoder)
       end
