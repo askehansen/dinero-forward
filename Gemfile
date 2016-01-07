@@ -21,7 +21,7 @@ gem 'appsignal'
 gem 'sidekiq'
 gem 'redis'
 gem 'sinatra', :require => nil
-gem 'errbase'
+gem 'safely_block'
 gem 'aws-sdk'
 
 group :production do

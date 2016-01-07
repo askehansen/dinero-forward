@@ -5,9 +5,14 @@ class ProcessEmail
     message = generate_message(context.message)
     attachments = generate_attachments(context.message['attachments'])
 
+    files = attachments.map(&:filename).join(', ')
+    Rails.logger.info "Processing email for #{message.from_email} with #{files}"
+
+
     begin
       user = User.find(message.user_id)
-    rescue ActiveRecord::RecordNotFound
+    rescue ActiveRecord::RecordNotFound => e
+      Errbase.report(e)
       context.fail!
     end
 
