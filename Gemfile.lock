@@ -36,9 +36,6 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
-    appsignal (0.11.17)
-      rack
-      thread_safe
     arel (6.0.3)
     autoprefixer-rails (6.0.3)
       execjs
@@ -92,6 +89,9 @@ GEM
     globalid (0.3.6)
       activesupport (>= 4.1.0)
     hitimes (1.2.3)
+    httparty (0.13.5)
+      json (~> 1.8)
+      multi_xml (>= 0.5.2)
     httpi (2.4.1)
       rack
     i18n (0.7.0)
@@ -116,6 +116,7 @@ GEM
     mime-types (2.99)
     mini_portile2 (2.0.0)
     minitest (5.8.3)
+    multi_xml (0.5.5)
     nokogiri (1.6.7)
       mini_portile2 (~> 2.0.0.rc2)
     pg (0.18.3)
@@ -162,6 +163,10 @@ GEM
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
     rake (10.4.2)
+    raygun4ruby (1.1.8)
+      httparty (~> 0.11)
+      json
+      rack
     redis (3.2.1)
     redis-namespace (1.5.2)
       redis (~> 3.0, >= 3.0.4)
@@ -214,7 +219,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  appsignal
   aws-sdk
   bootstrap-sass
   byebug
@@ -227,6 +231,7 @@ DEPENDENCIES
   puma
   rails (= 4.2.5)
   rails_12factor
+  raygun4ruby
   redis
   rest-client
   safely_block

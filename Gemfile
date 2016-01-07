@@ -17,12 +17,12 @@ gem 'rest-client'
 gem 'pry-rails'
 gem 'interactor-rails'
 gem 'puma'
-gem 'appsignal'
 gem 'sidekiq'
 gem 'redis'
 gem 'sinatra', :require => nil
 gem 'safely_block'
 gem 'aws-sdk'
+gem 'raygun4ruby'
 
 group :production do
   gem 'rails_12factor'
