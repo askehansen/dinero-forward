@@ -24,6 +24,7 @@ gem 'safely_block'
 gem 'aws-sdk'
 gem 'raygun4ruby'
 gem 'postmark-mitt'
+gem 'opbeat', git: 'https://github.com/opbeat/opbeat-ruby'
 
 group :production do
   gem 'rails_12factor'

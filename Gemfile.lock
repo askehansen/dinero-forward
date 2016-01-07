@@ -1,3 +1,9 @@
+GIT
+  remote: https://github.com/opbeat/opbeat-ruby
+  revision: 65a6b2b97b3da7f012112d14afa3c871d29dd652
+  specs:
+    opbeat (3.0.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -231,6 +237,7 @@ DEPENDENCIES
   interactor-rails
   jquery-rails
   mandrill
+  opbeat!
   pg
   postmark-mitt
   pry-rails
