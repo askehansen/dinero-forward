@@ -45,11 +45,7 @@ class ProcessEmail
       data.to_a.map do |filename, attachment|
         decoder = InboundAttachment::Base64Decoder.new if attachment['base64']
 
-        InboundAttachment.new(
-          filename: filename,
-          content:  attachment['content'],
-          decoder:  decoder
-        )
+        InboundAttachment.new(filename, attachment['content'], decoder)
       end
     end
 end
