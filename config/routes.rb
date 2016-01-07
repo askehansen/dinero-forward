@@ -13,4 +13,5 @@ Rails.application.routes.draw do
   resources :users
 
   resources :emails, only: :create
+  resources :postmark, only: :create
 end

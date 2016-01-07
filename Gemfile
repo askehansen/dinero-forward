@@ -23,6 +23,7 @@ gem 'sinatra', :require => nil
 gem 'safely_block'
 gem 'aws-sdk'
 gem 'raygun4ruby'
+gem 'postmark-mitt'
 
 group :production do
   gem 'rails_12factor'
