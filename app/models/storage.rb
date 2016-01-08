@@ -1,8 +1,9 @@
 class Storage
 
-  def initialize
+  def initialize(prefix=nil)
     s3 = Aws::S3::Resource.new
     @bucket = s3.bucket(ENV['BUCKET_NAME'])
+    @prefix = prefix || Rails.env
   end
 
   def open_file(key)
@@ -16,22 +17,26 @@ class Storage
   end
 
   def read_file(key)
-    @bucket.object(key_with_prefix(key)).get.body.read
+    object(key).get.body.read
   end
 
   def write_file(key, body)
-    obj = @bucket.object(key_with_prefix(key))
+    obj = object(key)
     obj.put body: body
   end
 
   def destroy_file(key)
-    @bucket.object(key_with_prefix(key)).delete
+    object(key).delete
   end
 
   private
 
+    def object(key)
+      @bucket.object(key_with_prefix(key))
+    end
+
     def key_with_prefix(key)
-      [Rails.env, key].join '/'
+      [@prefix, key].join '/'
     end
 
 end
