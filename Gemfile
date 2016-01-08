@@ -25,6 +25,7 @@ gem 'aws-sdk'
 gem 'raygun4ruby'
 gem 'postmark-mitt'
 gem 'opbeat', git: 'https://github.com/opbeat/opbeat-ruby'
+gem 'honeybadger'
 
 group :production do
   gem 'rails_12factor'
