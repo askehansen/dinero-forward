@@ -39,7 +39,7 @@ class PostmarkController < ApplicationController
   private
 
     def attachment_from_content(attachment)
-      InboundAttachment.new(attachment.file_name, attachment.source['Content'], Base64Decoder.new)
+      InboundAttachment.new(attachment.file_name, attachment.source['Content'], InboundAttachment::Base64Decoder.new)
     end
 
     def attachment_from_tempfile(attachment)
