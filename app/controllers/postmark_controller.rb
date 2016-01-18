@@ -5,7 +5,7 @@ class PostmarkController < ApplicationController
     email = Postmark::Mitt.new(request.body.read)
 
     filenames = email.attachments.map(&:file_name).join(', ')
-    Rails.logger.info "Processing email for #{message.from_email} with #{filenames}"
+    Rails.logger.info "Processing email for #{email.from_email} with #{filenames}"
 
     message = InboundMessage.new(
       from_name:  email.from_name,
