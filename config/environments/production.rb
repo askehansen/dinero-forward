@@ -80,12 +80,13 @@ Rails.application.configure do
   config.filter_parameters << :mandrill_events
 
   ActionMailer::Base.smtp_settings = {
-    :port =>           '587',
-    :address =>        'smtp.mandrillapp.com',
-    :user_name =>      ENV['MANDRILL_USERNAME'],
-    :password =>       ENV['MANDRILL_APIKEY'],
-    :domain =>         'heroku.com',
-    :authentication => :plain
+    :port           => '25', # or 2525
+    :address        => ENV['POSTMARK_SMTP_SERVER'],
+    :user_name      => ENV['POSTMARK_API_TOKEN'],
+    :password       => ENV['POSTMARK_API_TOKEN'],
+    :domain         => 'dinero-forward.dk',
+    :authentication => :cram_md5, # or :plain for plain-text authentication
+    :enable_starttls_auto => true, # or false for unencrypted connection
   }
   ActionMailer::Base.delivery_method = :smtp
 
