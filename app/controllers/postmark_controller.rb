@@ -17,7 +17,7 @@ class PostmarkController < ApplicationController
     user = User.find(message.user_id)
 
     attachments = email.attachments.map do |attachment|
-      InboundAttachment.new(attachment.file_name, attachment.read.read)
+      attachment_from_content(attachment)
     end
 
     attachments.each do |attachment|
@@ -35,5 +35,17 @@ class PostmarkController < ApplicationController
 
     head :ok
   end
+
+  private
+
+    def attachment_from_content(attachment)
+      InboundAttachment.new(attachment.file_name, attachment.source['Content'], Base64Decoder.new)
+    end
+
+    def attachment_from_tempfile(attachment)
+      file = attachment.read
+      file.rewind
+      InboundAttachment.new(attachment.file_name, file.read)
+    end
 
 end
