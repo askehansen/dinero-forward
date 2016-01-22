@@ -6,23 +6,26 @@ class EmailProcessor
 
   def process
     Rails.logger.info "Processing email for #{@email.from[:email]} with #{filenames}"
-
-    attachments.each do |attachment|
-      create_job(attachment)
-    end
+    create_purchases if user
   end
 
   private
 
+    def create_purchases
+      attachments.each do |attachment|
+        create_purchase(attachment)
+      end
+    end
+
     def attachments
-      @email.attachments.each do |file|
+      @email.attachments.map do |file|
         attachment = InboundAttachment.new(filename(file), file.read)
         attachment.save!
         attachment
       end
     end
 
-    def create_job(attachment)
+    def create_purchase(attachment)
       CreatePurchaseJob.perform_later(
         file_key:   attachment.key,
         filename:   attachment.filename,
@@ -34,7 +37,11 @@ class EmailProcessor
     end
 
     def user
-      @user ||= User.find(@email.to[:token])
+      @user ||= begin
+        User.find(@email.to[:token])
+      rescue ActiveRecord::RecordNotFound
+        nil
+      end
     end
 
     def filenames
