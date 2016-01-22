@@ -8,6 +8,8 @@ Rails.application.routes.draw do
 
   mount Sidekiq::Web => '/sidekiq'
 
+  mount_griddler
+
   root to: 'users#new'
 
   resources :users

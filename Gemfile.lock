@@ -88,8 +88,14 @@ GEM
       thor (~> 0.14)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
+    griddler (1.2.1)
+      htmlentities
+      rails (>= 3.2.0)
+    griddler-postmark (1.0.0)
+      griddler
     hitimes (1.2.3)
     honeybadger (2.3.3)
+    htmlentities (4.3.4)
     httpi (2.4.1)
       rack
     i18n (0.7.0)
@@ -221,6 +227,8 @@ DEPENDENCIES
   bootstrap-sass
   byebug
   figaro
+  griddler
+  griddler-postmark
   honeybadger
   interactor-rails
   jquery-rails

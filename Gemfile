@@ -24,6 +24,9 @@ gem 'safely_block'
 gem 'aws-sdk'
 gem 'postmark-mitt'
 
+gem 'griddler'
+gem 'griddler-postmark'
+
 gem 'honeybadger'
 
 group :production do
