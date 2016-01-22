@@ -40,6 +40,7 @@ class EmailProcessor
       @user ||= begin
         User.find(@email.to[:token])
       rescue ActiveRecord::RecordNotFound
+        Rails.logger.info "User not found with id #{@email.to[:token]}"
         nil
       end
     end
