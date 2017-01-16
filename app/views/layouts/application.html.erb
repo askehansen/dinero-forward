@@ -35,6 +35,10 @@
 </head>
 <body>
 
+  <% flash.each do |kind, message| %>
+    <div class="alert alert-<%= flash_class(kind) %> text-center"><%= raw message %></div>
+  <% end %>
+
 <%= yield %>
 
 

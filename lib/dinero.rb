@@ -7,6 +7,11 @@ class Dinero
     @organization_id = organization_id.strip
   end
 
+  def contacts
+    response = RestClient.get "https://api.dinero.dk/v1/#{@organization_id}/contacts", { Authorization: "Bearer #{@auth_token}", accept: :json }
+    JSON.parse(response)['Collection']
+  end
+
   def create_file(file)
     Rails.logger.info "Uploading file #{file.path}"
     response = RestClient.post "https://api.dinero.dk/v1/#{@organization_id}/files", { file: file }, { Authorization: "Bearer #{@auth_token}", accept: :json }
