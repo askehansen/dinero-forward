@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby '2.2.3'
+ruby '2.3.2'
 
 gem 'rails', '4.2.5'
 gem 'pg'
@@ -27,7 +27,8 @@ gem 'postmark-mitt'
 gem 'griddler'
 gem 'griddler-postmark'
 
-gem 'honeybadger'
+gem 'raygun4ruby'
+gem 'errbase'
 
 group :production do
   gem 'rails_12factor'
