@@ -18,7 +18,7 @@ class EmailProcessor
     end
 
     def attachments
-      @email.attachments.map do |file|
+      @_attachments ||= @email.attachments.map do |file|
         attachment = InboundAttachment.new(filename(file), file.read)
         attachment.save!
         attachment

@@ -12,7 +12,7 @@ class UploadPurchase
       context.purchase = client.create_purchase file_id: file_id, notes: context.note
     rescue => e
       Errbase.report(e)
-      context.failed!
+      context.fail!
     end
   end
 end
