@@ -1,5 +1,3 @@
-require 'sidekiq/web'
-
 if Rails.env.production?
   Sidekiq.configure_server do |config|
     config.redis = { url: ENV['REDIS_URL'] }
@@ -11,6 +9,3 @@ if Rails.env.production?
 else
   require 'sidekiq/testing/inline'
 end
-
-Sidekiq::Web.set :session_secret, Rails.application.secrets[:secret_key_base]
-Sidekiq::Web.set :sessions, Rails.application.config.session_options
