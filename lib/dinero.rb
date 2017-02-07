@@ -39,6 +39,7 @@ class Dinero
 
     begin
       response = RestClient.post 'https://authz.dinero.dk/dineroapi/oauth/token', params, { Authorization: "Basic #{auth}", accept: :json }
+      Rails.logger.info response
       JSON.parse(response)['access_token']
     rescue RestClient::BadRequest, RestClient::Unauthorized
       raise AuthorizationError
