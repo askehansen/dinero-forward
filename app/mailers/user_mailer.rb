@@ -8,9 +8,10 @@ class UserMailer < ApplicationMailer
     mail to: "#{name} <#{email}>", subject: 'Bilag modtaget'
   end
 
-  def upload_failed(email:, name:, filename:)
+  def upload_failed(email:, name:, filename:, error:)
     @name = name
     @filename = filename
+    @error = error
 
     mail to: "#{name} <#{email}>", subject: 'Bilag blev ikke uploadet'
   end
