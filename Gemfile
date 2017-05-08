@@ -26,6 +26,7 @@ gem 'postmark-mitt'
 
 gem 'griddler'
 gem 'griddler-postmark'
+gem 'griddler-sendgrid'
 
 gem 'raygun4ruby'
 gem 'errbase'

@@ -93,6 +93,8 @@ GEM
       rails (>= 3.2.0)
     griddler-postmark (1.0.0)
       griddler
+    griddler-sendgrid (1.0.0)
+      griddler
     hitimes (1.2.3)
     htmlentities (4.3.4)
     httparty (0.13.7)
@@ -237,6 +239,7 @@ DEPENDENCIES
   figaro
   griddler
   griddler-postmark
+  griddler-sendgrid
   interactor-rails
   jquery-rails
   mandrill

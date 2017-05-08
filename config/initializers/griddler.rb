@@ -1,3 +1,3 @@
 Griddler.configure do |config|
-  config.email_service = :postmark
+  config.email_service = :sendgrid
 end

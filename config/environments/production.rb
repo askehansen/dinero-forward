@@ -77,17 +77,14 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 
-  config.filter_parameters << :mandrill_events
-
   ActionMailer::Base.smtp_settings = {
-    :port           => '25', # or 2525
-    :address        => ENV['POSTMARK_SMTP_SERVER'],
-    :user_name      => ENV['POSTMARK_API_TOKEN'],
-    :password       => ENV['POSTMARK_API_TOKEN'],
-    :domain         => 'dinero-forward.dk',
-    :authentication => :cram_md5, # or :plain for plain-text authentication
-    :enable_starttls_auto => true, # or false for unencrypted connection
+    :user_name => ENV['SENDGRID_USERNAME'],
+    :password => ENV['SENDGRID_PASSWORD'],
+    :domain => 'dinero-forward.dk',
+    :address => 'smtp.sendgrid.net',
+    :port => 587,
+    :authentication => :plain,
+    :enable_starttls_auto => true
   }
-  ActionMailer::Base.delivery_method = :smtp
 
 end
