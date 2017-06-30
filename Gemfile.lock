@@ -91,8 +91,6 @@ GEM
     griddler (1.2.1)
       htmlentities
       rails (>= 3.2.0)
-    griddler-postmark (1.0.0)
-      griddler
     griddler-sendgrid (1.0.0)
       griddler
     hitimes (1.2.3)
@@ -100,8 +98,6 @@ GEM
     httparty (0.13.7)
       json (~> 1.8)
       multi_xml (>= 0.5.2)
-    httpi (2.4.1)
-      rack
     i18n (0.7.0)
     interactor (3.1.0)
     interactor-rails (2.0.1)
@@ -118,9 +114,6 @@ GEM
       nokogiri (>= 1.5.9)
     mail (2.6.3)
       mime-types (>= 1.16, < 3)
-    mandrill (0.0.4)
-      httpi
-      json
     method_source (0.8.2)
     mime-types (2.99)
     mini_portile2 (2.0.0)
@@ -238,11 +231,9 @@ DEPENDENCIES
   errbase
   figaro
   griddler
-  griddler-postmark
   griddler-sendgrid
   interactor-rails
   jquery-rails
-  mandrill
   pg
   postmark-mitt
   pry-rails
@@ -264,4 +255,4 @@ RUBY VERSION
    ruby 2.3.2p217
 
 BUNDLED WITH
-   1.13.7
+   1.14.6
