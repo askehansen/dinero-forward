@@ -9,7 +9,6 @@ gem 'bootstrap-sass'
 gem 'jquery-rails'
 gem 'turbolinks'
 
-gem 'mandrill'
 gem 'figaro'
 
 gem 'rest-client'
@@ -25,7 +24,6 @@ gem 'aws-sdk'
 gem 'postmark-mitt'
 
 gem 'griddler'
-gem 'griddler-postmark'
 gem 'griddler-sendgrid'
 
 gem 'raygun4ruby'
