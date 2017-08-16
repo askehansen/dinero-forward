@@ -1,4 +1,4 @@
-class CreatePurchaseJob < ActiveJob::Base
+class CreatePurchaseJob < ApplicationJob
   queue_as :purchases
 
   def perform(opts={})

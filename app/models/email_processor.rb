@@ -8,18 +8,10 @@ class EmailProcessor
   def process
     Rails.logger.info "Processing email for #{@email.from[:email]} with #{filenames}"
 
-    attachments.each do |attachment|
-      attachment.save!
-
-      CreatePurchaseJob.perform_later(
-        file_key:   attachment.key,
-        filename:   attachment.filename,
-        from_email: message.from_email,
-        from_name:  message.from_name,
-        subject:    message.subject,
-        user:       user
-      )
+    purchases.each do |purchase|
+      CreatePurchaseJob.perform_later(purchase)
     end
+
   end
 
   private
@@ -30,16 +22,34 @@ class EmailProcessor
     end
   end
 
+  def purchases
+    @_purchases ||= attachments.map do |attachment|
+      attachment.save!
+
+      Purchase.create(
+        filename: attachment.filename,
+        file_key: attachment.key,
+        message: message,
+        status: :unprocessed
+      )
+    end
+  end
+
   def user
-    @_user ||= User.find(message.user_id)
+    @_user ||= User.find(user_id)
+  end
+
+  def user_id
+    /(?<id>.+)@/.match(@email.from[:email])[:id]
   end
 
   def message
-    @_message ||= InboundMessage.new(
+    @_message ||= Message.create(
       from_name:  @email.from[:name],
       from_email: @email.from[:email],
       email:      @email.to.first[:email],
-      subject:    @email.subject
+      subject:    @email.subject,
+      user:       user
     )
   end
 
