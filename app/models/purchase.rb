@@ -5,7 +5,9 @@ class Purchase < ApplicationRecord
 
   enum status: {
     unprocessed: 0,
-    processed: 1
+    processed: 1,
+    processing: 9,
+    failed: 10
   }
 
   def file
