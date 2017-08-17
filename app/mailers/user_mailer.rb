@@ -16,4 +16,9 @@ class UserMailer < ApplicationMailer
     mail to: "#{name} <#{email}>", subject: 'Bilag blev ikke uploadet'
   end
 
+  def error(email, error)
+    @error = error
+    mail to: email, subject: 'Uventet fejl'
+  end
+
 end

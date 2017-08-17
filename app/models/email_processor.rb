@@ -8,8 +8,13 @@ class EmailProcessor
   def process
     Rails.logger.info "Processing email for #{@email.from[:email]} with #{filenames}"
 
-    purchases.each do |purchase|
-      CreatePurchaseJob.perform_later(purchase)
+    begin
+      purchases.each do |purchase|
+        CreatePurchaseJob.perform_later(purchase)
+      end
+    rescue Exception => e
+      UserMailer.error(@email.from[:email], e.message).deliver_later
+      raise e
     end
 
   end
