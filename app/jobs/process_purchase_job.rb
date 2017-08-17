@@ -9,7 +9,7 @@ class ProcessPurchaseJob < ApplicationJob
 
   def process!(purchase)
     purchase.processing!
-    upload = UploadPurchase.call file: purchase.file, credentials: purchase.user, note: purchase.subject
+    upload = UploadPurchase.call file: purchase.file, credentials: purchase.user, note: purchase.message.subject
 
     if upload.success?
       purchase.processed!
