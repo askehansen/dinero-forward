@@ -2,7 +2,7 @@ class UploadPurchase
   include Interactor
 
   def call
-    client = ::Dinero.new organization_id: context.credentials.organization_id, api_key: context.credentials.api_key
+    client = Dinero.new organization_id: context.credentials.organization_id, api_key: context.credentials.api_key
 
     begin
       client.authorize!
