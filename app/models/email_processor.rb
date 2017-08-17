@@ -40,7 +40,7 @@ class EmailProcessor
   end
 
   def user_id
-    /(?<id>.+)@/.match(@email.from[:email])[:id]
+    /(?<id>.+)@/.match(@email.to.first[:email])[:id]
   end
 
   def message
