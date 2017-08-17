@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :set_stats
   def new
     @user = User.new
   end
@@ -16,7 +17,7 @@ class UsersController < ApplicationController
     end
 
     flash[:error] = nil
-    
+
     if @user.save
       redirect_to @user
     else
@@ -26,5 +27,12 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find params[:id]
+  end
+
+  private
+
+  def set_stats
+    @processed = Sidekiq::Stats.new.processed / 2
+    @users = User.count
   end
 end

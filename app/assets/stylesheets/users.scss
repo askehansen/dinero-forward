@@ -27,7 +27,34 @@
 }
 
 .open-source {
-  margin-top: 50px;
+  margin: 50px 0;
+}
+
+.stats {
+  background-image: linear-gradient(-60deg, #fccb90 -80%, #bf57af 150%);
+  // background-image: linear-gradient(140deg, #4F23AE -50%, #C86DD7 150%);
+  justify-content: center;
+  overflow: auto;
+
+
+  @media (min-width: 768px) {
+    display: flex;
+  }
+
+}
+
+.stats-item {
+  text-align: center;
+  color: #fff;
+  margin: 20px 50px;
+}
+.stats-value {
+  font-size: 64px;
+  font-family: $font-family-serif;
+}
+.stats-label {
+  font-size: 14px;
+  text-transform: uppercase;
 }
 
 

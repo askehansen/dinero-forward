@@ -1,5 +1,6 @@
 <div class="container text-center">
   <div class="hero">
+    <%= r_image_tag('paperplane.png', class: 'paperplane') %>
     <h1>Dinero Forward</h1>
     <div class="lead"><em>Email</em> dine bilag til Dinero app</div>
   </div>
@@ -20,11 +21,22 @@
     <div class="form-group">
       <%= f.text_field :api_key, class: 'form-control', placeholder: 'Din Dinero API nøgle', r_equired: true %>
     </div>
-    <%= f.submit 'Kom igang', class: 'btn btn-success' %>
+    <%= f.submit 'Kom igang', class: 'btn btn-primary' %>
   <% end %>
 
 
   <p class="open-source">Det er <em>gratis</em> og <a href="https://github.com/askehansen/dinero-forward" target="_blank">open source</a></p>
+</div>
+
+<div class="stats">
+  <div class="stats-item">
+    <div class="stats-value"><%= number_with_delimiter @processed %></div>
+    <div class="stats-label">Bilag uploadet</div>
+  </div>
+  <div class="stats-item">
+    <div class="stats-value"><%= number_with_delimiter @users %></div>
+    <div class="stats-label">Brugere</div>
+  </div>
 </div>
 
 <script>
