@@ -31,16 +31,26 @@
 }
 
 .stats {
-  background-image: linear-gradient(-60deg, #fccb90 -80%, #bf57af 150%);
-  // background-image: linear-gradient(140deg, #4F23AE -50%, #C86DD7 150%);
+  background: linear-gradient(-60deg, #fccb90 -80%, #bf57af 150%);
   justify-content: center;
   overflow: auto;
+  position: relative;
 
 
   @media (min-width: 768px) {
     display: flex;
   }
 
+}
+
+.stats-confetti {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: asset-url('confetti@2x.png');
+  background-size: 1139px;
 }
 
 .stats-item {
