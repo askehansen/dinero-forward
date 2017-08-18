@@ -12,13 +12,25 @@ h1 {
   font-size: 36px;
 }
 
+#header {
+  background: linear-gradient(-20deg, #fccb90 -80%, #bf57af 150%);
+  height: 10px;
+}
+
 
 
 #footer {
-  background: #444;
+  background: #393f4d;
   color: #fff;
   padding: 100px 0;
   a {
     color: #fff;
   }
+}
+
+
+.footer-aske {
+  border-radius: 50%;
+  width: 120px;
+  margin-bottom: 10px;
 }
