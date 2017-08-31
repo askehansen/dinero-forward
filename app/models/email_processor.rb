@@ -12,11 +12,11 @@ class EmailProcessor
       purchases.each do |purchase|
         ProcessPurchaseJob.perform_later(purchase)
       end
+      UserMailer.received(message).deliver_later
     rescue Exception => e
       UserMailer.error(@email.from[:email], e.message).deliver_later
       raise e
     end
-
   end
 
   private
@@ -54,7 +54,8 @@ class EmailProcessor
       from_email: @email.from[:email],
       email:      @email.to.first[:email],
       subject:    @email.subject,
-      user:       user
+      user:       user,
+      status:     :unprocessed
     )
   end
 

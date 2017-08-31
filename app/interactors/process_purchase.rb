@@ -7,10 +7,23 @@ class ProcessPurchase
 
     if upload.success?
       context.purchase.processed!
-      UserMailer.upload_complete(email: context.purchase.message.from_email, name: context.purchase.message.from_name, filename: context.purchase.filename).deliver_later
     else
       context.purchase.failed!
-      UserMailer.upload_failed(email: context.purchase.message.from_email, name: context.purchase.message.from_name, filename: context.purchase.filename, error: upload.error).deliver_later
     end
+
+    notify_user
+  end
+
+  private
+
+  def notify_user
+    if !message.purchases.unprocessed.any? && message.unprocessed?
+      message.processed!
+      UserMailer.done(message).deliver_later
+    end
+  end
+
+  def message
+    context.purchase.message
   end
 end

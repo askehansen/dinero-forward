@@ -1,0 +1,10 @@
+<p>Hej <%= @name %></p>
+
+<p>Disse bilag er modtaget og bliver lagt ind i dinero:<br>
+  <strong>
+    <% @files.each do |filename| %>
+      <%= filename %><br>
+    <% end %>
+</strong></p>
+
+<p>Du modtager en email når de er lagt ind.</p>

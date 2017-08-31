@@ -6,4 +6,12 @@ class UserMailerPreview < ActionMailer::Preview
     UserMailer.upload_complete
   end
 
+  def done
+    UserMailer.done(Purchase.last.message)
+  end
+
+  def received
+    UserMailer.received(Purchase.last.message)
+  end
+
 end

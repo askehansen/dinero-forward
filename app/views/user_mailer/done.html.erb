@@ -1,0 +1,23 @@
+<p>Hej <%= @name %></p>
+
+<% if @processed.any? %>
+  <p>Disse bilag blev lagt ind i dinero:<br>
+    <strong>
+      <% @processed.each do |filename| %>
+        <%= filename %><br>
+      <% end %>
+  </strong></p>
+<% end %>
+
+<% if @failed.any? %>
+  <p>Disse bilag fejlede og blev ikke lagt ind i dinero:<br>
+    <strong>
+      <% @failed.each do |filename| %>
+        <%= filename %><br>
+      <% end %>
+  </strong></p>
+<% end %>
+
+<% if @processed.any? %>
+  <p>Du finder bilagene med dato <em><%= @date %></em> under <em>Bogføring > Bilagsoversigt</em></p>
+<% end %>
