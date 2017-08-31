@@ -12,7 +12,7 @@ class EmailProcessor
       purchases.each do |purchase|
         ProcessPurchaseJob.perform_later(purchase)
       end
-      UserMailer.received(message).deliver_now
+      UserMailer.received(message).deliver_later
     rescue Exception => e
       UserMailer.error(@email.from[:email], e.message).deliver_later
       raise e
