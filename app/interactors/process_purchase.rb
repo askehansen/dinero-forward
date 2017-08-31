@@ -11,7 +11,7 @@ class ProcessPurchase
       context.purchase.failed!
     end
 
-    notify_user if message.unprocessed? && message.purchases.unprocessed.empty?
+    notify_user if message.unprocessed? && message.purchases.unprocessed.empty? && message.purchases.processing.empty?
   end
 
   private
