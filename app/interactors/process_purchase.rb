@@ -10,17 +10,20 @@ class ProcessPurchase
     else
       context.purchase.failed!
     end
-    
+
     notify_user
   end
 
   private
 
   def notify_user
-    message.reload
     if !message.purchases.unprocessed.any? && message.unprocessed?
-      message.processed!
-      UserMailer.done(message).deliver_later
+      begin
+        message.processed!
+        UserMailer.done(message).deliver_later
+      rescue ActiveRecord::StaleObjectError => e
+        # optimistic locking to prevent duplicated emails
+      end
     end
   end
 
