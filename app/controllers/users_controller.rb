@@ -32,7 +32,7 @@ class UsersController < ApplicationController
   private
 
   def set_stats
-    @processed = Sidekiq::Stats.new.processed / 2
+    @processed = Purchase.processed_count
     @users = User.count
   end
 end

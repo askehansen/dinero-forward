@@ -14,4 +14,8 @@ class Purchase < ApplicationRecord
     Storage.new.open_file(file_key)
   end
 
+  def self.processed_count
+    self.count + 71_441
+  end
+
 end
