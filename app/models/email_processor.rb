@@ -26,7 +26,7 @@ class EmailProcessor
   def to_email
     @email.to.select do |email|
       /.+@dinero-forward\.dk/ === email[:email]
-    end
+    end.first
   end
 
   def attachments
