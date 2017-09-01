@@ -6,7 +6,7 @@ class EmailProcessor
 
 
   def process
-    return head :ok if @email.to.first[:email] == 'noreply@dinero-forward.dk'
+    return head :ok if to_email[:email] == 'noreply@dinero-forward.dk'
 
     Rails.logger.info "Processing email for #{@email.from[:email]} with #{filenames}"
 
@@ -22,6 +22,12 @@ class EmailProcessor
   end
 
   private
+
+  def to_email
+    @email.to.select do |email|
+      /.+@dinero-forward\.dk/ === email[:email]
+    end
+  end
 
   def attachments
     @_attachments ||= @email.attachments.map do |file|
@@ -47,14 +53,14 @@ class EmailProcessor
   end
 
   def user_id
-    /(?<id>.+)@/.match(@email.to.first[:email])[:id]
+    /(?<id>.+)@/.match(to_email[:email])[:id]
   end
 
   def message
     @_message ||= Message.create(
       from_name:  @email.from[:name],
       from_email: @email.from[:email],
-      email:      @email.to.first[:email],
+      email:      @email.to_email[:email],
       subject:    @email.subject,
       user:       user,
       status:     :unprocessed
