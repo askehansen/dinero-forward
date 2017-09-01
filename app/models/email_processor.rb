@@ -6,7 +6,7 @@ class EmailProcessor
 
 
   def process
-    return head :ok if @email.to.first[:email] == 'noreply@dinero.dk'
+    return head :ok if @email.to.first[:email] == 'noreply@dinero-forward.dk'
 
     Rails.logger.info "Processing email for #{@email.from[:email]} with #{filenames}"
 
