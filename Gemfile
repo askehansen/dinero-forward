@@ -26,7 +26,7 @@ gem 'postmark-mitt'
 gem 'griddler'
 gem 'griddler-sendgrid'
 
-gem 'raygun4ruby'
+gem 'sentry-raven'
 gem 'errbase'
 
 group :production do
