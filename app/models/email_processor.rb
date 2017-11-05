@@ -60,7 +60,7 @@ class EmailProcessor
     @_message ||= Message.create(
       from_name:  @email.from[:name],
       from_email: @email.from[:email],
-      email:      @email.to_email[:email],
+      email:      to_email[:email],
       subject:    @email.subject,
       user:       user,
       status:     :unprocessed
