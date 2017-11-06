@@ -6,8 +6,8 @@ class EmailProcessor
 
 
   def process
-    return head :ok if to_email.nil?
-    return head :ok if to_email[:email] == 'noreply@dinero-forward.dk'
+    return false if to_email.nil?
+    return false if to_email[:email] == 'noreply@dinero-forward.dk'
 
     Rails.logger.info "Processing email for #{@email.from[:email]} with #{filenames}"
 
