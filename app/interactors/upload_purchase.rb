@@ -10,6 +10,9 @@ class UploadPurchase
       file_id = client.create_file context.file
       sleep 1
       context.purchase = client.create_purchase file_id: file_id, notes: context.note
+    rescue RestClient::UnsupportedMediaType => e
+      context.error = e.message
+      context.fail!
     rescue => e
       Errbase.report(e)
       context.error = e.message
