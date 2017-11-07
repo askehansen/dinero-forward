@@ -8,19 +8,25 @@ class Dinero
   end
 
   def contacts
-    response = RestClient.get "https://api.dinero.dk/v1/#{@organization_id}/contacts", { Authorization: "Bearer #{@auth_token}", accept: :json }
-    JSON.parse(response)['Collection']
+    request do
+      response = RestClient.get "https://api.dinero.dk/v1/#{@organization_id}/contacts", { Authorization: "Bearer #{@auth_token}", accept: :json }
+      JSON.parse(response)['Collection']
+    end
   end
 
   def create_file(file)
-    Rails.logger.info "Uploading file #{file.path}"
-    response = RestClient.post "https://api.dinero.dk/v1/#{@organization_id}/files", { file: file }, { Authorization: "Bearer #{@auth_token}", accept: :json }
-    JSON.parse(response)['FileGuid']
+    request do
+      Rails.logger.info "Uploading file #{file.path}"
+      response = RestClient.post "https://api.dinero.dk/v1/#{@organization_id}/files", { file: file }, { Authorization: "Bearer #{@auth_token}", accept: :json }
+      JSON.parse(response)['FileGuid']
+    end
   end
 
   def create_purchase(date: DateTime.now, file_id: nil, notes: nil)
-    response = RestClient.post "https://api.dinero.dk/v1/#{@organization_id}/vouchers/purchase", { VoucherDate: date.strftime('%Y-%m-%d'), FileGuid: file_id, Notes: notes }.to_json, { Authorization: "Bearer #{@auth_token}", accept: :json, content_type: :json }
-    JSON.parse(response)['VoucherGuid']
+    request do
+      response = RestClient.post "https://api.dinero.dk/v1/#{@organization_id}/vouchers/purchase", { VoucherDate: date.strftime('%Y-%m-%d'), FileGuid: file_id, Notes: notes }.to_json, { Authorization: "Bearer #{@auth_token}", accept: :json, content_type: :json }
+      JSON.parse(response)['VoucherGuid']
+    end
   end
 
   def authorize!
@@ -44,6 +50,38 @@ class Dinero
     rescue RestClient::BadRequest, RestClient::Unauthorized
       raise AuthorizationError
     end
+  end
+
+  private
+
+  def request
+    begin
+      Response.new(yield).successful!
+    rescue RestClient::BadRequest => e
+      Response.new(e.message).failed!
+    end
+  end
+
+  class Response < SimpleDelegator
+
+    def successful!
+      @success = true
+      self
+    end
+
+    def failed!
+      @success = false
+      self
+    end
+
+    def success?
+      @success
+    end
+
+    def failed?
+      !@success
+    end
+
   end
 
   class AuthorizationError < StandardError
