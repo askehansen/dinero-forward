@@ -56,7 +56,9 @@ class Dinero
 
   def request
     begin
-      Response.new(yield).successful!
+      with_retries(max_tries: 3) do
+        Response.new(yield).successful!
+      end
     rescue RestClient::BadRequest => e
       Response.new(e.message).failed!
     end

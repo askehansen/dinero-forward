@@ -28,6 +28,7 @@ gem 'griddler-sendgrid'
 
 gem 'sentry-raven'
 gem 'errbase'
+gem 'retries'
 
 group :production do
   gem 'rails_12factor'

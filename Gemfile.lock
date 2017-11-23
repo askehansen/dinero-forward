@@ -161,6 +161,7 @@ GEM
       http-cookie (>= 1.0.2, < 2.0)
       mime-types (>= 1.16, < 4.0)
       netrc (~> 0.8)
+    retries (0.0.5)
     safely_block (0.2.0)
       errbase
     sass (3.5.1)
@@ -237,6 +238,7 @@ DEPENDENCIES
   rails_12factor
   redis
   rest-client
+  retries
   safely_block
   sass-rails (~> 5.0)
   sentry-raven
@@ -250,4 +252,4 @@ RUBY VERSION
    ruby 2.3.2p217
 
 BUNDLED WITH
-   1.14.6
+   1.16.0
