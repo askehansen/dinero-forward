@@ -16,8 +16,7 @@ class Dinero
 
   def create_file(file)
     Rails.logger.info "Uploading file #{file.path}"
-    request do
-      file = File.new(file.path) if file.closed? # ensure the file is not closed when retrying
+    request(retries: false) do
       response = RestClient.post "https://api.dinero.dk/v1/#{@organization_id}/files", { file: file }, { Authorization: "Bearer #{@auth_token}", accept: :json }
       JSON.parse(response)['FileGuid']
     end
@@ -55,9 +54,10 @@ class Dinero
 
   private
 
-  def request
+  def request(retries: true)
     begin
-      with_retries(max_tries: 3) do
+      max_tries = retries ? 3 : 1
+      with_retries(max_tries: max_tries) do
         Response.new(yield).successful!
       end
     rescue RestClient::BadRequest => e
