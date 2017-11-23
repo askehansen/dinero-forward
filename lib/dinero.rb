@@ -15,9 +15,9 @@ class Dinero
   end
 
   def create_file(file)
+    Rails.logger.info "Uploading file #{file.path}"
     request do
-      Rails.logger.info "Uploading file #{file.path}"
-      file.open # ensure the file is not closed when retrying
+      file = File.new(file.path) if file.closed? # ensure the file is not closed when retrying
       response = RestClient.post "https://api.dinero.dk/v1/#{@organization_id}/files", { file: file }, { Authorization: "Bearer #{@auth_token}", accept: :json }
       JSON.parse(response)['FileGuid']
     end
