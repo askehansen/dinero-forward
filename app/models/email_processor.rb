@@ -63,6 +63,7 @@ class EmailProcessor
       from_email: @email.from[:email],
       email:      to_email[:email],
       subject:    @email.subject,
+      body:       @email.body,
       user:       user,
       status:     :unprocessed
     )
