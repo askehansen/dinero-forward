@@ -11,14 +11,14 @@ class EmailProcessor
 
     Rails.logger.info "Processing email for #{@email.from[:email]} with #{filenames}"
 
-    begin
-      purchases.each do |purchase|
-        ProcessPurchaseJob.perform_later(purchase)
-      end
-      UserMailer.received(message).deliver_later
-    rescue Exception => e
-      UserMailer.error(@email.from[:email], e.message).deliver_later
+    purchases.each do |purchase|
+      ProcessPurchaseJob.perform_later(purchase)
     end
+
+    UserMailer.received(message).deliver_later
+
+  rescue Exception => e
+    UserMailer.error(@email.from[:email], e.message).deliver_later
   end
 
   private
