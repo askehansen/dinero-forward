@@ -18,6 +18,7 @@ class EmailProcessor
     UserMailer.received(message).deliver_later
 
   rescue Exception => e
+    Errbase.report_exception(e)
     UserMailer.error(@email.from[:email], e.message).deliver_later
   end
 
