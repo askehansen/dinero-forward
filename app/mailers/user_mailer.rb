@@ -23,6 +23,12 @@ class UserMailer < ApplicationMailer
     mail to: "#{message.from_name} <#{message.from_email}>", subject: 'Bilag modtaget'
   end
 
+  def no_attachments(message)
+    @name = message.from_name
+
+    mail to: "#{message.from_name} <#{message.from_email}>", subject: 'Ingen bilag'
+  end
+
   def done(message)
     @name = message.from_name
     @date = DateTime.now.strftime '%d/%m/%Y'

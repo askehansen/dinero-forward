@@ -11,6 +11,11 @@ class EmailProcessor
 
     Rails.logger.info "Processing email for #{@email.from[:email]} with #{filenames}"
 
+
+    if purchases.empty?
+      return UserMailer.no_attachments(message).deliver_later
+    end
+
     purchases.each do |purchase|
       ProcessPurchaseJob.perform_later(purchase)
     end
