@@ -20,8 +20,6 @@ class EmailProcessor
       ProcessPurchaseJob.perform_later(purchase)
     end
 
-    UserMailer.received(message).deliver_later
-
   rescue Mail::Field::ParseError => e
     UserMailer.error(@email.from[:email], e.message).deliver_later
   rescue Exception => e
