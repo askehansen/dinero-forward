@@ -14,4 +14,16 @@ class UserMailerPreview < ActionMailer::Preview
     UserMailer.received(Purchase.last.message)
   end
 
+  def no_attachments
+    message = Message.new(
+      email: "123@dinero-forward.dk",
+      from_name: "Aske hansen",
+      from_email: "aske@deeco.dk",
+      created_at: DateTime.now,
+      subject: "Kvittering",
+      body: "<a href='#'>Link til kvittering</a>"
+    )
+    UserMailer.no_attachments(message)
+  end
+
 end

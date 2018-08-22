@@ -1,3 +1,14 @@
-<p>Hej <%= @name %></p>
+<p>Hej <%= @message.from_name %></p>
 
 <p>Du har ikke vedhæftet nogen bilag.</p>
+
+<br clear="none" />
+<br clear="none" />
+<br clear="none" />
+--------------- Original Message ---------------<br clear="none" />
+<b>From:</b> <%= @message.from_name %> [<%= @message.from_email %>]<br clear="none" />
+<b>Sent:</b> <%= @message.created_at.strftime('%Y-%m-%e %l:%M') %><br clear="none" />
+<b>To:</b> <%= @message.email %><br clear="none" />
+<b>Subject:</b> <%= @message.subject %><br clear="none" />
+&nbsp;
+<%= @message.body.html_safe %>

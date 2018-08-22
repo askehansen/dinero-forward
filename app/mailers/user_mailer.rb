@@ -24,9 +24,9 @@ class UserMailer < ApplicationMailer
   end
 
   def no_attachments(message)
-    @name = message.from_name
+    @message = message
 
-    mail to: "#{message.from_name} <#{message.from_email}>", subject: 'Ingen bilag'
+    mail to: "#{message.from_name} <#{message.from_email}>", subject: "Re: #{@message.subject}"
   end
 
   def done(message)
