@@ -21,7 +21,7 @@ class UserMailerPreview < ActionMailer::Preview
       from_email: "aske@deeco.dk",
       created_at: DateTime.now,
       subject: "Kvittering",
-      body: "<a href='#'>Link til kvittering</a>"
+      body: "Hej aske\n\n---\nMed venlig hilsen\n\nAske Hansen\nwww.deeco.dk\n+45 31 60 03 03"
     )
     UserMailer.no_attachments(message)
   end
