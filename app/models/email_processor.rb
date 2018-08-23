@@ -11,6 +11,9 @@ class EmailProcessor
 
     Rails.logger.info "Processing email for #{@email.from[:email]} with #{filenames}"
 
+    if @email.from[:email] == 'forwarding-noreply@google.com'
+      return UserMailer.gmail_forwarding(message).deliver_later
+    end
 
     if purchases.empty?
       return UserMailer.no_attachments(message).deliver_later

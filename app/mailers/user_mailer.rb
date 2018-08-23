@@ -44,4 +44,11 @@ class UserMailer < ApplicationMailer
     mail to: email, subject: 'Uventet fejl'
   end
 
+  def gmail_forwarding(message)
+    @message = message
+    email = /(\S+)\z/.match(@message.subject)[1]
+
+    mail to: email, subject: @message.subject
+  end
+
 end
