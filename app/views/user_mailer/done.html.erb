@@ -21,3 +21,14 @@
 <% if @processed.any? %>
   <p>Du finder bilagene med dato <em><%= @date %></em> under <em>Bogføring > Bilagsoversigt</em></p>
 <% end %>
+
+<br clear="none" />
+<br clear="none" />
+<br clear="none" />
+--------------- Original Message ---------------<br clear="none" />
+<b>From:</b> <%= @message.from_name %> [<%= @message.from_email %>]<br clear="none" />
+<b>Sent:</b> <%= @message.created_at.strftime('%Y-%m-%e %l:%M') %><br clear="none" />
+<b>To:</b> <%= @message.email %><br clear="none" />
+<b>Subject:</b> <%= @message.subject %><br clear="none" />
+&nbsp;
+<%= raw @message.body.gsub("\n", '<br>') %>

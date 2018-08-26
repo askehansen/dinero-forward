@@ -17,10 +17,11 @@ class UserMailer < ApplicationMailer
   end
 
   def received(message)
+    @message = message
     @name = message.from_name
     @files = message.purchases.pluck(:filename)
 
-    mail to: "#{message.from_name} <#{message.from_email}>", subject: 'Bilag modtaget'
+    mail to: "#{message.from_name} <#{message.from_email}>", subject: "Re: #{@message.subject}"
   end
 
   def no_attachments(message)
