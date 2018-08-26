@@ -17,11 +17,10 @@ class UserMailer < ApplicationMailer
   end
 
   def received(message)
-    @message = message
     @name = message.from_name
     @files = message.purchases.pluck(:filename)
 
-    mail to: "#{message.from_name} <#{message.from_email}>", subject: "Re: #{@message.subject}"
+    mail to: "#{message.from_name} <#{message.from_email}>", subject: "Re: #{message.subject}"
   end
 
   def no_attachments(message)
@@ -31,13 +30,14 @@ class UserMailer < ApplicationMailer
   end
 
   def done(message)
+    @message = message
     @name = message.from_name
     @date = DateTime.now.strftime '%d/%m/%Y'
 
     @processed = message.purchases.processed.pluck(:filename)
     @failed = message.purchases.failed.pluck(:filename)
 
-    mail to: "#{message.from_name} <#{message.from_email}>", subject: 'Bilag uploadet'
+    mail to: "#{message.from_name} <#{message.from_email}>", subject: "Re: #{message.subject}"
   end
 
   def error(email, error)
