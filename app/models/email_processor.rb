@@ -74,6 +74,7 @@ class EmailProcessor
       email:      to_email[:email],
       subject:    @email.subject,
       body:       @email.body,
+      raw_html:   @email.raw_html,
       user:       user,
       status:     :unprocessed
     )
