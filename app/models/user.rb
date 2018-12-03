@@ -11,6 +11,10 @@ class User < ApplicationRecord
     pro: 1
   }
 
+  def permissions
+    Permission.new(self)
+  end
+
   private
 
   def strip_keys
