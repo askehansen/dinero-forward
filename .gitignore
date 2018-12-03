@@ -21,3 +21,6 @@
 
 # Ignore sample webhooks
 /mandrill-webhook
+
+# Ignore local test
+/test.rb

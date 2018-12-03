@@ -31,4 +31,4 @@
 <b>To:</b> <%= @message.email %><br clear="none" />
 <b>Subject:</b> <%= @message.subject %><br clear="none" />
 &nbsp;
-<%= raw @message.body.gsub("\n", '<br>') %>
+<%= raw @message.raw_html %>
