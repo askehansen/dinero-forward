@@ -29,6 +29,8 @@ gem 'griddler-sendgrid'
 gem 'sentry-raven'
 gem 'errbase'
 gem 'retries'
+gem 'wkhtmltopdf-binary'
+gem 'wicked_pdf'
 
 group :production do
   gem 'rails_12factor'

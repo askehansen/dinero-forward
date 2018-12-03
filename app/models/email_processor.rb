@@ -15,12 +15,14 @@ class EmailProcessor
       return UserMailer.gmail_forwarding(message).deliver_later
     end
 
-    if purchases.empty?
-      return UserMailer.no_attachments(message).deliver_later
-    end
-
-    purchases.each do |purchase|
-      ProcessPurchaseJob.perform_later(purchase)
+    if purchases.any?
+      purchases.each do |purchase|
+        ProcessPurchaseJob.perform_later(purchase)
+      end
+    elsif user.permissions.create_pdf?
+      CreatePdfJob.perform_later(message)
+    else
+      UserMailer.no_attachments(message).deliver_later
     end
 
   rescue Mail::Field::ParseError => e
@@ -45,21 +47,15 @@ class EmailProcessor
   end
 
   def purchases
-    @_purchases ||= begin
-      if attachments.empty? && user.permissions.create_pdf?
-        [create_pdf_purchase]
-      else
-        attachments.map do |attachment|
-          attachment.save!
+    @_purchases ||= attachments.map do |attachment|
+      attachment.save!
 
-          Purchase.create(
-            filename: attachment.filename,
-            file_key: attachment.key,
-            message: message,
-            status: :unprocessed
-          )
-        end
-      end
+      Purchase.create!(
+        filename: attachment.filename,
+        file_key: attachment.key,
+        message: message,
+        status: :unprocessed
+      )
     end
   end
 
@@ -81,10 +77,6 @@ class EmailProcessor
       user:       user,
       status:     :unprocessed
     )
-  end
-
-  def create_pdf_purchase
-    WickedPdf.new.pdf_from_string(message.body)
   end
 
   def filenames
