@@ -11,7 +11,7 @@ class User < ApplicationRecord
     pro: 1
   }
 
-  def permissions
+  def can
     Permission.new(self)
   end
 

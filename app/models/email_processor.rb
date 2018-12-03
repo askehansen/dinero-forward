@@ -19,7 +19,7 @@ class EmailProcessor
       purchases.each do |purchase|
         ProcessPurchaseJob.perform_later(purchase)
       end
-    elsif user.permissions.create_pdf?
+    elsif user.can.create_pdf?
       CreatePdfJob.perform_later(message)
     else
       UserMailer.no_attachments(message).deliver_later
