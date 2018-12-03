@@ -45,15 +45,21 @@ class EmailProcessor
   end
 
   def purchases
-    @_purchases ||= attachments.map do |attachment|
-      attachment.save!
+    @_purchases ||= begin
+      if attachments.empty? && user.permissions.create_pdf?
+        [create_pdf_purchase]
+      else
+        attachments.map do |attachment|
+          attachment.save!
 
-      Purchase.create(
-        filename: attachment.filename,
-        file_key: attachment.key,
-        message: message,
-        status: :unprocessed
-      )
+          Purchase.create(
+            filename: attachment.filename,
+            file_key: attachment.key,
+            message: message,
+            status: :unprocessed
+          )
+        end
+      end
     end
   end
 
@@ -75,6 +81,10 @@ class EmailProcessor
       user:       user,
       status:     :unprocessed
     )
+  end
+
+  def create_pdf_purchase
+    WickedPdf.new.pdf_from_string(message.body)
   end
 
   def filenames
