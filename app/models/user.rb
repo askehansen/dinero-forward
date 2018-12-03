@@ -6,6 +6,11 @@ class User < ApplicationRecord
 
   before_save :strip_keys
 
+  enum plan: {
+    free: 0,
+    pro: 1
+  }
+
   private
 
   def strip_keys
