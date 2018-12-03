@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171107112329) do
+ActiveRecord::Schema.define(version: 20181203074936) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,6 +45,7 @@ ActiveRecord::Schema.define(version: 20171107112329) do
     t.string "api_key"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "plan", default: 0
   end
 
   add_foreign_key "messages", "users"
