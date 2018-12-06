@@ -65,11 +65,9 @@ class EmailProcessor
         status: :unprocessed
       )
 
-      safely do
-        io = attachment.io
-        io.rewind
-        purchase.file_v2.attach(io: io, filename: attachment.filename)
-      end
+      io = attachment.io
+      io.rewind
+      purchase.file_v2.attach(io: io, filename: attachment.filename)
 
       purchase
     end

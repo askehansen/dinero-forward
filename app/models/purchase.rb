@@ -13,7 +13,10 @@ class Purchase < ApplicationRecord
   has_one_attached :file_v2
 
   def file
-    Storage.new.open_file(file_key)
+    tmpfile = Tempfile.new(["file", file_v2.filename.extension_with_delimiter], encoding: 'ascii-8bit')
+    tmpfile.write(file_v2.download)
+    tmpfile.rewind
+    tmpfile
   end
 
   def self.processed_count
