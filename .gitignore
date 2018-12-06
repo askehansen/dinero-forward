@@ -24,3 +24,6 @@
 
 # Ignore local test
 /test.rb
+
+# Ignore node modules
+/node_modules
