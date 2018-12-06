@@ -26,7 +26,7 @@ class EmailProcessor
     end
 
     safely do
-      message.update(raw_html: @email.raw_html)
+      message.update(raw_html: raw_html)
     end
 
   rescue Mail::Field::ParseError => e
@@ -48,6 +48,10 @@ class EmailProcessor
     @_attachments ||= @email.attachments.map do |file|
       attachment_from_file(file)
     end
+  end
+
+  def raw_html
+    @email.raw_html.force_encoding('iso8859-1').encode('utf-8')
   end
 
   def purchases
