@@ -51,7 +51,7 @@ class EmailProcessor
   end
 
   def raw_html
-    @email.raw_html.force_encoding('iso8859-1').encode('utf-8')
+    @email.raw_html.to_s.force_encoding('iso8859-1').encode('utf-8')
   end
 
   def purchases
