@@ -50,12 +50,19 @@ class EmailProcessor
     @_purchases ||= attachments.map do |attachment|
       attachment.save!
 
-      Purchase.create!(
+      purchase = Purchase.create!(
         filename: attachment.filename,
         file_key: attachment.key,
         message: message,
         status: :unprocessed
       )
+
+      safely do
+        io = attachment.io.rewind
+        purchase.file_v2.attach(io: io, filename: attachment.filename)
+      end
+
+      purchase
     end
   end
 
@@ -86,7 +93,7 @@ class EmailProcessor
 
   def attachment_from_file(file)
     file_name = file.path.split('/').last
-    InboundAttachment.new(file.original_filename, file.read)
+    InboundAttachment.new(file.original_filename, file.read, io: file)
   end
 
 end

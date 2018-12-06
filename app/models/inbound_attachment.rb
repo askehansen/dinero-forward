@@ -1,11 +1,13 @@
 class InboundAttachment
   attr_accessor :filename
+  attr_reader :io
 
-  def initialize(filename, content, decoder=nil)
+  def initialize(filename, content, decoder=nil, io: nil)
     @filename = filename
     @content = content
     @decoder = decoder || DefaultDecoder.new
     @uuid = SecureRandom.uuid
+    @io = io
   end
 
   def content

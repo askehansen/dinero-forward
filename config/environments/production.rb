@@ -87,4 +87,7 @@ Rails.application.configure do
     :enable_starttls_auto => true
   }
 
+  # Store files on Amazon S3.
+  config.active_storage.service = :amazon
+
 end

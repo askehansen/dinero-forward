@@ -21,6 +21,7 @@ gem 'redis'
 gem 'sinatra', :require => nil
 gem 'safely_block'
 gem 'aws-sdk'
+gem "aws-sdk-s3", require: false
 gem 'postmark-mitt'
 
 gem 'griddler'

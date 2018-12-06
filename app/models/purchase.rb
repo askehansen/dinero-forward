@@ -10,6 +10,8 @@ class Purchase < ApplicationRecord
     failed: 10
   }
 
+  has_one_attached :file_v2
+
   def file
     Storage.new.open_file(file_key)
   end

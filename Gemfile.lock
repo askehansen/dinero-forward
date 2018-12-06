@@ -903,6 +903,7 @@ PLATFORMS
 
 DEPENDENCIES
   aws-sdk
+  aws-sdk-s3
   bootstrap-sass
   byebug
   errbase
