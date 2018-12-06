@@ -19,6 +19,8 @@ class CreatePdfJob < ApplicationJob
       status: :unprocessed
     )
 
+    purchase.file_v2.attach(io: StringIO.new(pdf), filename: filename)
+
     ProcessPurchaseJob.perform_later(purchase)
   end
 
