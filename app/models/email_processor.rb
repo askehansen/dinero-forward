@@ -25,6 +25,10 @@ class EmailProcessor
       UserMailer.no_attachments(message).deliver_later
     end
 
+    safely do
+      message.update(raw_html: @email.raw_html)
+    end
+
   rescue Mail::Field::ParseError => e
     UserMailer.error(@email.from[:email], e.message).deliver_later
   rescue Exception => e
@@ -58,7 +62,8 @@ class EmailProcessor
       )
 
       safely do
-        io = attachment.io.rewind
+        io = attachment.io
+        io.rewind
         purchase.file_v2.attach(io: io, filename: attachment.filename)
       end
 
@@ -75,13 +80,12 @@ class EmailProcessor
   end
 
   def message
-    @_message ||= Message.create(
+    @_message ||= Message.create!(
       from_name:  @email.from[:name],
       from_email: @email.from[:email],
       email:      to_email[:email],
       subject:    @email.subject,
       body:       @email.body,
-      raw_html:   @email.raw_html,
       user:       user,
       status:     :unprocessed
     )
