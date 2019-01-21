@@ -7,12 +7,17 @@ class UsersController < ApplicationController
   def create
     @user = User.new params[:user].permit!
 
+    unless @user.valid?
+      flash[:error] = 'Du skal angive både firma ID og API nøgle'
+      return render :new
+    end
+
     begin
       client = Dinero.new(organization_id: @user.organization_id, api_key: @user.api_key)
       client.authorize!
       client.contacts
     rescue Exception => e
-      flash[:error] = 'Kunne ikke godkendes. Har du angivet dit organizations nr. rigtigt?'
+      flash[:error] = 'Kunne ikke godkendes. Har du angivet dit firma ID rigtigt?'
       return render :new
     end
 

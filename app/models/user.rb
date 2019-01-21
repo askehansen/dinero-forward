@@ -3,8 +3,7 @@ class User < ApplicationRecord
   has_many :purchases, through: :messages
 
   validates_presence_of :organization_id, :api_key
-
-  before_save :strip_keys
+  before_validation :strip_keys
 
   enum plan: {
     free: 0,
@@ -18,8 +17,8 @@ class User < ApplicationRecord
   private
 
   def strip_keys
-    self.organization_id.strip!
-    self.api_key.strip!
+    self.organization_id&.strip!
+    self.api_key&.strip!
   end
 
 end
