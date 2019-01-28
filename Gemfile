@@ -32,6 +32,7 @@ gem 'errbase'
 gem 'retries'
 gem 'wkhtmltopdf-binary','0.12.3'
 gem 'wicked_pdf'
+gem 'pdf-reader'
 
 group :production do
   gem 'rails_12factor'

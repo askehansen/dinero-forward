@@ -2,6 +2,7 @@ class ProcessPurchase
   include Interactor
 
   def call
+    context.purchase.validate_file!
     context.purchase.processing!
     upload = UploadPurchase.call file: context.purchase.file, credentials: context.purchase.user, note: context.purchase.message.subject
 
