@@ -30,7 +30,7 @@ gem 'griddler-sendgrid'
 gem 'sentry-raven'
 gem 'errbase'
 gem 'retries'
-gem 'wkhtmltopdf-binary'
+gem 'wkhtmltopdf-binary','0.12.3'
 gem 'wicked_pdf'
 
 group :production do
