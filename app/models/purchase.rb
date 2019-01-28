@@ -15,9 +15,8 @@ class Purchase < ApplicationRecord
   def validate_file!
     case file_v2.blob.content_type
     when "application/pdf"
-      !!PDF::Reader.new(file_v2.download)
-    else
-      true
+      body = file_v2.download
+      raise InvalidFileError, 'file does not contain %%EOF marker' unless body.include?('%%EOF')
     end
   end
 
@@ -30,6 +29,9 @@ class Purchase < ApplicationRecord
 
   def self.processed_count
     self.count + 71_441
+  end
+
+  class InvalidFileError < StandardError
   end
 
 end

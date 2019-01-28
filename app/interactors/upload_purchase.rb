@@ -5,6 +5,7 @@ class UploadPurchase
     client = Dinero.new organization_id: context.credentials.organization_id, api_key: context.credentials.api_key
 
     begin
+      context.purchase.validate_file!
       client.authorize!
 
       file_id = client.create_file context.file
@@ -15,7 +16,7 @@ class UploadPurchase
         context.fail!
         context.error = context.response
       end
-      
+
     rescue RestClient::UnsupportedMediaType => e
       context.error = e.message
       context.fail!
