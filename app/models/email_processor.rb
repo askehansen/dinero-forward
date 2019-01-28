@@ -19,14 +19,10 @@ class EmailProcessor
       purchases.each do |purchase|
         ProcessPurchaseJob.perform_later(purchase)
       end
-    elsif user.can.create_pdf?
+    elsif user.can.create_pdf? && message.raw_html.present?
       CreatePdfJob.perform_later(message)
     else
       UserMailer.no_attachments(message).deliver_later
-    end
-
-    safely do
-      message.update(raw_html: raw_html)
     end
 
   rescue Mail::Field::ParseError => e
@@ -44,30 +40,23 @@ class EmailProcessor
     end.first
   end
 
-  def attachments
-    @_attachments ||= @email.attachments.map do |file|
-      attachment_from_file(file)
-    end
+  def text_encoding
+    @email.charsets[:text]
   end
 
   def raw_html
-    @email.raw_html&.force_encoding('iso8859-1')&.encode('utf-8')
+    @email.raw_html&.encode('utf-8', text_encoding)
   end
 
   def purchases
-    @_purchases ||= attachments.map do |attachment|
-      attachment.save!
-
+    @_purchases ||= @email.attachments.map do |attachment|
       purchase = Purchase.create!(
-        filename: attachment.filename,
-        file_key: attachment.key,
+        filename: attachment.original_filename,
         message: message,
         status: :unprocessed
       )
 
-      io = attachment.io
-      io.rewind
-      purchase.file_v2.attach(io: io, filename: attachment.filename)
+      purchase.file_v2.attach(attachment)
 
       purchase
     end
@@ -89,17 +78,13 @@ class EmailProcessor
       subject:    @email.subject,
       body:       @email.body,
       user:       user,
-      status:     :unprocessed
+      status:     :unprocessed,
+      raw_html:   raw_html
     )
   end
 
   def filenames
     @_filenames ||= @email.attachments.map(&:original_filename).join(', ')
-  end
-
-  def attachment_from_file(file)
-    file_name = file.path.split('/').last
-    InboundAttachment.new(file.original_filename, file.read, io: file)
   end
 
 end

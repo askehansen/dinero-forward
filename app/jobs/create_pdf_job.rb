@@ -2,7 +2,7 @@ class CreatePdfJob < ApplicationJob
   queue_as :purchases
 
   def perform(message)
-    pdf = WickedPdf.new.pdf_from_string(message.raw_html)
+    pdf = WickedPdf.new.pdf_from_string(message.raw_html, encoding: 'utf-8')
 
     filename = message.subject.presence || 'faktura'
     filename = "#{filename}.pdf"
