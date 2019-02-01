@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   has_many :messages
   has_many :purchases, through: :messages
+  has_many :usages
 
   validates_presence_of :organization_id, :api_key
   before_validation :strip_keys

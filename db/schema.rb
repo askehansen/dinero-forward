@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_06_191143) do
+ActiveRecord::Schema.define(version: 2019_02_01_152827) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -71,6 +71,15 @@ ActiveRecord::Schema.define(version: 2018_12_06_191143) do
     t.index ["user_id"], name: "index_subscriptions_on_user_id"
   end
 
+  create_table "usages", force: :cascade do |t|
+    t.integer "used"
+    t.date "used_on"
+    t.uuid "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_usages_on_user_id"
+  end
+
   create_table "users", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "organization_id"
     t.string "api_key"
@@ -93,4 +102,5 @@ ActiveRecord::Schema.define(version: 2018_12_06_191143) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "messages", "users"
   add_foreign_key "purchases", "messages"
+  add_foreign_key "usages", "users"
 end
