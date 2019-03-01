@@ -25,7 +25,7 @@ class Dinero
   def create_purchase(file_id: nil, notes: nil)
     request do
       response = RestClient.post "https://api.dinero.dk/v1.1/#{@organization_id}/vouchers/purchase", { FileGuid: file_id, Lines: [], PurchaseType: "credit", Notes: notes }.to_json, { Authorization: "Bearer #{@auth_token}", accept: :json, content_type: :json }
-      JSON.parse(response)['VoucherGuid']
+      JSON.parse(response)['Guid']
     end
   end
 
