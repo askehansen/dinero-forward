@@ -15,7 +15,6 @@ class UsersController < ApplicationController
     begin
       client = Dinero.new(organization_id: @user.organization_id, api_key: @user.api_key)
       client.authorize!
-      client.contacts
     rescue Exception => e
       flash[:error] = 'Kunne ikke godkendes. Har du angivet dit firma ID rigtigt?'
       return render :new
