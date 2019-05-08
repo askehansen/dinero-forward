@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
-ruby '2.4.6'
+ruby '2.6.1'
 
-gem 'rails', '5.2.2'
+gem 'rails', '6.0.0.rc1'
 gem 'pg'
 gem 'sass-rails', '~> 5.0'
 gem 'bootstrap-sass'
@@ -14,7 +14,7 @@ gem 'figaro'
 gem 'rest-client'
 
 gem 'pry-rails'
-gem 'interactor-rails'
+gem 'interactor'
 gem 'puma'
 gem 'sidekiq'
 gem 'redis'
