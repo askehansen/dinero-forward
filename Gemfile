@@ -37,6 +37,7 @@ gem 'listen'
 
 group :production do
   gem 'rails_12factor'
+  gem 'cloudflare-rails'
 end
 
 group :development, :test do
