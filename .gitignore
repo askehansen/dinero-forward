@@ -35,3 +35,5 @@ Procfile.dev
 dump.rdb
 
 /public/packs
+
+/config/master.key
