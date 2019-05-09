@@ -33,3 +33,5 @@
 Procfile.dev
 
 dump.rdb
+
+/public/packs
