@@ -1,7 +1,17 @@
 {
-  "application.css": "/packs/application-f1d87b200ac03f6c650409c58ab49026.css",
-  "application.css.map": "/packs/application-f1d87b200ac03f6c650409c58ab49026.css.map",
-  "application.js": "/packs/application-8d435146cbbd12b4b101.js",
-  "application.js.map": "/packs/application-8d435146cbbd12b4b101.js.map",
-  "images/confetti@2x.png": "/packs/images/confetti@2x-5bdede80c37cbd2387ae9f838af3db7d.png"
+  "application.css": "/packs/css/application-c5c8d6a7.css",
+  "application.css.map": "/packs/css/application-c5c8d6a7.css.map",
+  "application.js": "/packs/js/application-8e8a8d8298e8ade2fad8.js",
+  "application.js.map": "/packs/js/application-8e8a8d8298e8ade2fad8.js.map",
+  "entrypoints": {
+    "application": {
+      "js": [
+        "/packs/js/application-8e8a8d8298e8ade2fad8.js"
+      ],
+      "js.map": [
+        "/packs/js/application-8e8a8d8298e8ade2fad8.js.map"
+      ]
+    }
+  },
+  "media/images/confetti@2x.png": "/packs/media/images/confetti@2x-5bdede80c37cbd2387ae9f838af3db7d.png"
 }
